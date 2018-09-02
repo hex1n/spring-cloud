@@ -1,0 +1,33 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: spring-cloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true
+
+
+zuul:
+  #忽略单个
+  #  ignored-services: spring-cloud-dept
+  #前缀
+  prefix: /dlwlrma
+  #忽略全部
+  ignored-services: "*"
+  routes:
+    mydept.serviceId: spring-cloud-dept
+    mydept.path: /mydept/**
+
+info:
+  app.name: spring-cloud
+  company.name: www.dlwlrma.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
